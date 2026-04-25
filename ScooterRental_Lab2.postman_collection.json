@@ -1,0 +1,404 @@
+{
+  "info": {
+    "name": "Scooter Rental API - Lab 2",
+    "_postman_id": "scooter-rental-lab2",
+    "description": "REST API для системи оренди електросамокатів. Варіант 22.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "GET all users",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/users",
+            "description": "Отримати список всіх користувачів"
+          }
+        },
+        {
+          "name": "GET user by id",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/users/1",
+            "description": "Отримати користувача за id"
+          }
+        },
+        {
+          "name": "POST create user",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/users",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Дмитро Іваненко\",\n  \"email\": \"dmytro@example.com\",\n  \"phoneNumber\": \"+380501234567\"\n}"
+            },
+            "description": "Створити нового користувача"
+          }
+        },
+        {
+          "name": "PUT update user",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/users/1",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Дмитро Оновлений\",\n  \"email\": \"dmytro_new@example.com\",\n  \"phoneNumber\": \"+380507654321\"\n}"
+            },
+            "description": "Оновити дані користувача"
+          }
+        },
+        {
+          "name": "DELETE user",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/users/1",
+            "description": "Видалити користувача"
+          }
+        },
+        {
+          "name": "GET user rides [cross-entity]",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/users/1/rides",
+            "description": "Отримати всі поїздки конкретного користувача"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Scooter Categories",
+      "item": [
+        {
+          "name": "GET all categories",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/categories",
+            "description": "Отримати всі категорії самокатів"
+          }
+        },
+        {
+          "name": "GET category by id",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/categories/1",
+            "description": "Отримати категорію за id"
+          }
+        },
+        {
+          "name": "POST create category",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/categories",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"Стандартний\",\n  \"description\": \"Базовий самокат для міських поїздок\"\n}"
+            },
+            "description": "Створити нову категорію"
+          }
+        },
+        {
+          "name": "POST create category - Потужний",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/categories",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"Потужний\",\n  \"description\": \"Самокат з потужним мотором для підйомів\"\n}"
+            }
+          }
+        },
+        {
+          "name": "POST create category - Великий акумулятор",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/categories",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"З великим акумулятором\",\n  \"description\": \"Самокат для довгих поїздок, до 80 км\"\n}"
+            }
+          }
+        },
+        {
+          "name": "PUT update category",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/categories/1",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"Стандартний Плюс\",\n  \"description\": \"Оновлений опис категорії\"\n}"
+            },
+            "description": "Оновити категорію"
+          }
+        },
+        {
+          "name": "DELETE category",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/categories/1",
+            "description": "Видалити категорію"
+          }
+        },
+        {
+          "name": "GET category scooters [cross-entity]",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/categories/1/scooters",
+            "description": "Отримати всі самокати певної категорії"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Stations",
+      "item": [
+        {
+          "name": "GET all stations",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/stations",
+            "description": "Отримати всі станції"
+          }
+        },
+        {
+          "name": "GET station by id",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/stations/1",
+            "description": "Отримати станцію за id"
+          }
+        },
+        {
+          "name": "POST create station",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/stations",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Центр\",\n  \"address\": \"вул. Хрещатик, 1, Київ\",\n  \"capacity\": 20\n}"
+            },
+            "description": "Створити нову станцію"
+          }
+        },
+        {
+          "name": "POST create station - Park",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/stations",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Парк\",\n  \"address\": \"вул. Паркова, 5, Київ\",\n  \"capacity\": 15\n}"
+            }
+          }
+        },
+        {
+          "name": "PUT update station",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/stations/1",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Центр (оновлено)\",\n  \"address\": \"вул. Хрещатик, 1, Київ\",\n  \"capacity\": 25\n}"
+            },
+            "description": "Оновити станцію"
+          }
+        },
+        {
+          "name": "DELETE station",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/stations/1",
+            "description": "Видалити станцію"
+          }
+        },
+        {
+          "name": "GET station scooters [cross-entity]",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/stations/1/scooters",
+            "description": "Отримати всі самокати на конкретній станції"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Scooters",
+      "item": [
+        {
+          "name": "GET all scooters",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/scooters",
+            "description": "Отримати всі самокати"
+          }
+        },
+        {
+          "name": "GET available scooters",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/scooters/available",
+            "description": "Отримати тільки доступні для оренди самокати"
+          }
+        },
+        {
+          "name": "GET scooter by id",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/scooters/1",
+            "description": "Отримати самокат за id"
+          }
+        },
+        {
+          "name": "POST create scooter",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{baseUrl}}/scooters?categoryId=1&stationId=1",
+              "host": ["{{baseUrl}}"],
+              "path": ["scooters"],
+              "query": [
+                { "key": "categoryId", "value": "1" },
+                { "key": "stationId", "value": "1" }
+              ]
+            },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"model\": \"Xiaomi Pro 2\",\n  \"available\": true,\n  \"batteryLevel\": 95,\n  \"pricePerMinute\": 2.5\n}"
+            },
+            "description": "Створити новий самокат з категорією та станцією"
+          }
+        },
+        {
+          "name": "POST create scooter - Ninebot",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{baseUrl}}/scooters?categoryId=2&stationId=2",
+              "host": ["{{baseUrl}}"],
+              "path": ["scooters"],
+              "query": [
+                { "key": "categoryId", "value": "2" },
+                { "key": "stationId", "value": "2" }
+              ]
+            },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"model\": \"Ninebot Max G30\",\n  \"available\": true,\n  \"batteryLevel\": 80,\n  \"pricePerMinute\": 3.0\n}"
+            }
+          }
+        },
+        {
+          "name": "PUT update scooter",
+          "request": {
+            "method": "PUT",
+            "url": {
+              "raw": "{{baseUrl}}/scooters/1?categoryId=1&stationId=1",
+              "host": ["{{baseUrl}}"],
+              "path": ["scooters", "1"],
+              "query": [
+                { "key": "categoryId", "value": "1" },
+                { "key": "stationId", "value": "1" }
+              ]
+            },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"model\": \"Xiaomi Pro 2 Updated\",\n  \"available\": true,\n  \"batteryLevel\": 100,\n  \"pricePerMinute\": 2.0\n}"
+            },
+            "description": "Оновити самокат"
+          }
+        },
+        {
+          "name": "DELETE scooter",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/scooters/1",
+            "description": "Видалити самокат"
+          }
+        },
+        {
+          "name": "GET scooter rides [cross-entity]",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/scooters/1/rides",
+            "description": "Отримати всі поїздки конкретного самоката"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Rides",
+      "item": [
+        {
+          "name": "GET all rides",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/rides",
+            "description": "Отримати всі поїздки"
+          }
+        },
+        {
+          "name": "GET ride by id",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/rides/1",
+            "description": "Отримати поїздку за id"
+          }
+        },
+        {
+          "name": "POST start ride",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/rides/start",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": 1,\n  \"scooterId\": 1,\n  \"startStationId\": 1\n}"
+            },
+            "description": "Розпочати нову поїздку. Самокат стає недоступним."
+          }
+        },
+        {
+          "name": "PUT end ride",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/rides/1/end",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"endStationId\": 2\n}"
+            },
+            "description": "Завершити поїздку. Автоматично розраховується вартість. Самокат стає доступним і переміщується на кінцеву станцію."
+          }
+        },
+        {
+          "name": "DELETE ride",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/rides/1",
+            "description": "Видалити поїздку"
+          }
+        }
+      ]
+    }
+  ]
+}
